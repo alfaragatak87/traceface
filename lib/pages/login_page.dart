@@ -1,3 +1,21 @@
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/login_page.dart                                             ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layar formulir autentikasi masuk (Login) khusus bagi Petugas Polisi atau    ║
+// ║  Administrator yang ingin mengelola data di TraceFace.                       ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Dipanggil dari `UserHomePage` jika Publik mengetuk tombol "Petugas".      ║
+// ║  - Menghubungi `local_repository.dart` -> `loginAdmin()` untuk validasi.     ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `_repo.loginAdmin(email, pass)` : Menyuntikkan kredensial ke repo SQLite  ║
+// ║    yang di sana sandi akan di-hash menggunakan **SHA-256**.                  ║
+// ║  - `LocalAuthService.instance.login(user.name)` : Menyimpan status aktif     ║
+// ║    di memori HP.                                                             ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
 import 'package:flutter/material.dart';
 import '../data/local_repository.dart';
 import '../services/local_auth_service.dart';
@@ -40,6 +58,8 @@ class _LoginPageState extends State<LoginPage> {
       // Simpan session
       final userName = user['name'] as String;
       await LocalAuthService.instance.login(userName);
+
+      if (!mounted) return;
 
       // Arahkan ke dasbor admin
       Navigator.pushAndRemoveUntil(

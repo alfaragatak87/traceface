@@ -1,28 +1,28 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/data/local_repository.dart                              ║
-// ║                                                              ║
-// ║  PERAN : Lapisan data utama — menyimpan semua data kasus    ║
-// ║          ke SQLite lokal (menggantikan Firestore).          ║
-// ║                                                              ║
-// ║  DATABASE : traceface.db (via DatabaseHelper)               ║
-// ║  TABEL    : missing_cases                                    ║
-// ║                                                              ║
-// ║  PERBEDAAN DENGAN FIRESTORE :                               ║
-// ║    • Data hanya ada di HP ini (tidak sinkron ke HP lain)    ║
-// ║    • Tidak ada Stream realtime — pakai Future + refresh     ║
-// ║    • Foto disimpan di internal storage, bukan cloud         ║
-// ║                                                              ║
-// ║  DIPAKAI OLEH :                                              ║
-// ║    home_page.dart   → getStats(), getRecentCases()         ║
-// ║    scan_page.dart   → searchByName()                        ║
-// ║    report_page.dart → addCase()                             ║
-// ║    cases_page.dart  → getAllCases(), updateStatus()         ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/data/local_repository.dart                                        ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Repository Utama yang menangani seluruh operasi CRUD (Create, Read, Update, ║
+// ║  Delete) ke dalam SQLite. Ini adalah satu-satunya jembatan penghubung        ║
+// ║  antara Antarmuka Pengguna (UI) dengan DatabaseHelper.                       ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Menggunakan `DatabaseHelper` untuk mengambil instance koneksi SQLite.     ║
+// ║  - Menggunakan `StorageService` untuk menyimpan file gambar/foto secara      ║
+// ║    absolut di internal memori HP Android.                                    ║
+// ║  - Menggunakan package `crypto` untuk enkripsi hashing sandi (SHA-256).      ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `loginAdmin()` : Mengamankan sandi dengan SHA-256 agar tidak bocor.       ║
+// ║  - `sendMessage()` & `getMessages()` : Mengelola kotak masuk pelaporan.      ║
+// ║  - `addCase()` : Menyimpan kasus baru + merelokasi file gambar ke cache app. ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
 import '../models/missing_person.dart';
 import '../models/message.dart';
@@ -231,7 +231,7 @@ class LocalRepository {
         'role': 'admin',
         'created_at': DateTime.now().millisecondsSinceEpoch,
       });
-      print("✅ Akun default dibuat: admin@traceface.com / admin123");
+      debugPrint("✅ Akun default dibuat: admin@traceface.com / admin123");
     }
   }
 

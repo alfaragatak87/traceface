@@ -1,9 +1,19 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/theme/app_theme.dart                                    ║
-// ║                                                              ║
-// ║  PERAN : Pusat semua warna, ukuran, dan konfigurasi tema.   ║
-// ║          Kalau mau ganti warna/font, cukup ubah di sini.    ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/theme/app_theme.dart                                              ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Kamus sentral (*Single Source of Truth*) untuk seluruh konfigurasi visual   ║
+// ║  dan estetika UI aplikasi TraceFace. Meliputi palet warna, gradien modern,   ║
+// ║  serta pengaturan tema material bawaan Flutter.                              ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Diimpor oleh `main.dart` untuk menginisialisasi `MaterialApp(theme)`.     ║
+// ║  - Diimpor oleh hampir seluruh file di dalam folder `pages/` dan `widgets/`. ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `AppColors` : Menyimpan warna statis (misal: `primary`, `background`).    ║
+// ║  - `AppGradients` : Menyimpan efek gradien (*glassmorphism*, warna dinamis). ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
 

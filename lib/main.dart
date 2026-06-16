@@ -1,14 +1,23 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/main.dart                                               ║
-// ║                                                              ║
-// ║  PERAN : Pintu masuk utama. Inisialisasi service lokal.     ║
-// ║                                                              ║
-// ║  URUTAN INISIALISASI :                                       ║
-// ║    1. Flutter binding                                        ║
-// ║    2. DatabaseHelper (SQLite lokal)                          ║
-// ║    3. NotificationService                                    ║
-// ║    4. runApp → langsung ke MainScreen                        ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/main.dart                                                         ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  File utama (Entry Point) yang menjadi tempat pertama kali aplikasi mulai    ║
+// ║  berjalan. Bertugas merangkai dan menginisialisasi seluruh layanan internal  ║
+// ║  seperti konfigurasi tampilan OS, manajemen memori SQLite, dan layanan       ║
+// ║  notifikasi latar belakang (background service).                             ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Merupakan induk (*root*) dari seluruh halaman (`pages/`).                 ║
+// ║  - Diakhiri dengan melontarkan pengguna ke `splash_page.dart` untuk          ║
+// ║    dilakukan verifikasi sesi login sebelum membelah *router* aplikasi.       ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `WidgetsFlutterBinding.ensureInitialized()` : Wajib agar *native code*    ║
+// ║    bisa berkomunikasi dengan *Dart/Flutter* sebelum `runApp`.                ║
+// ║  - `AdminMainScreen` : Struktur navigasi antarmuka khusus (Bottom Navbar)    ║
+// ║    untuk mengelompokkan halaman-halaman yang boleh dilihat Admin.            ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

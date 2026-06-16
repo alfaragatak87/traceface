@@ -1,12 +1,39 @@
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/models/message.dart                                               ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  File ini mendefinisikan struktur objek "Pesan / Laporan Penemuan". Pesan    ║
+// ║  ini dikirimkan oleh pengguna publik saat mereka menemukan kecocokan wajah   ║
+// ║  di layar pemindaian (Scan), dan diterima oleh Admin di dasbornya.           ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Di-insert ke DB lewat `local_repository.dart` -> `sendMessage()`.         ║
+// ║  - Di-fetch oleh `admin_messages_page.dart` untuk dirender menjadi list UI.  ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `isRead` : Bendera (flag) logika untuk membedakan pesan baru/lama.        ║
+// ║  - `DateTime` : Waktu spesifik kejadian yang akan dikoversi ke integer       ║
+// ║                 saat masuk SQLite (`millisecondsSinceEpoch`).                ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+/// Class Message membungkus seluruh data yang dikirimkan melalui form pelaporan.
 class Message {
+  // ID baris di SQLite (Bisa null jika data baru dibuat dan belum di-insert)
   final int? id;
+  // Merujuk pada kasus mana (MissingPerson.caseId) pesan ini tertuju
   final String caseId;
+  // Nama sang pelapor/penemu
   final String userName;
+  // Nomor HP atau kontak sang pelapor
   final String contactInfo;
+  // Isi pesan, detail lokasi penemuan, dsb.
   final String textMessage;
+  // Waktu pesan dikirim
   final DateTime createdAt;
+  // Status apakah pesan ini sudah dibaca oleh admin/petugas
   final bool isRead;
 
+  /// Konstruktor dasar untuk pembentukan objek Message
   Message({
     this.id,
     required this.caseId,

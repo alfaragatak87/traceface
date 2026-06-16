@@ -1,8 +1,21 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/pages/home_page.dart                                    ║
-// ║                                                              ║
-// ║  PERAN : Dashboard utama. Data dari SQLite (LocalRepository).║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/home_page.dart                                              ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Halaman Dasbor Utama khusus untuk **Petugas / Admin**. Menampilkan panel    ║
+// ║  statistik ringkasan (jumlah kasus, kasus selesai, dsb) secara dinamis       ║
+// ║  berdasarkan data aktual dari database lokal SQLite.                         ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Di-render oleh `AdminMainScreen` di `main.dart` pada index tab ke-0.      ║
+// ║  - Memanggil `local_auth_service.dart` untuk operasi Log Out (keluar).       ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `_repo.getStats()` : Menjalankan kueri kalkulasi total (SUM/COUNT)        ║
+// ║    kasus dari database untuk ditampilkan pada kartu statistik biru.          ║
+// ║  - Fungsi _logout() : Mengubah flag `is_logged_in` menjadi false, lalu       ║
+// ║    melempar user kembali ke `splash_page.dart` (mengunci aplikasi).          ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:flutter/material.dart';

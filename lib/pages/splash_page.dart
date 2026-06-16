@@ -1,3 +1,23 @@
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/splash_page.dart                                            ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layar sambutan animasi yang muncul pertama kali saat aplikasi dibuka.       ║
+// ║  Di balik layarnya, ia bekerja secara rahasia sebagai "Gerbang Logika"       ║
+// ║  untuk menentukan ke mana pengguna harus diarahkan: apakah ke beranda        ║
+// ║  publik, ataukah ke dasbor admin (jika token login masih tersimpan).         ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Dipanggil oleh `main.dart` sebagai halaman awal (home).                   ║
+// ║  - Mendorong (*push replacement*) ke `UserMainScreen` atau `AdminMainScreen`.║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `LocalRepository.instance.checkAndCreateDefaultAdmin()` : Memastikan      ║
+// ║    akun `admin@traceface.com` selalu ada di database walaupun aplikasinya    ║
+// ║    baru saja di-install ulang.                                               ║
+// ║  - `isLoggedIn()` : Mengintip status login di `LocalAuthService`.            ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
 import 'package:flutter/material.dart';
 import '../data/local_repository.dart';
 import '../services/local_auth_service.dart';

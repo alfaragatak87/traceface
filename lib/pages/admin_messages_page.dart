@@ -1,3 +1,21 @@
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/admin_messages_page.dart                                    ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layar khusus Admin untuk mengecek seluruh pesan/laporan penemuan orang      ║
+// ║  hilang yang dikirimkan oleh Pengguna Publik setelah melalui proses Scan.    ║
+// ║  Merupakan tab ke-5 (Pesan) di tampilan khusus AdminMainScreen.              ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Terhubung ke tabel `messages` via `getMessages()` di LocalRepository.     ║
+// ║  - Menampilkan objek `Message` (model).                                      ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - Fungsi `_markAsRead()` : Secara reaktif mengubah kolom tabel DB `isRead`  ║
+// ║    menjadi True ketika Admin mengetuk pesan (sehingga warnanya pudar).       ║
+// ║  - Tampilan Kartu Pesan : Berwarna tebal untuk *Unread*, pudar untuk *Read*. ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
 import 'package:flutter/material.dart';
 import '../data/local_repository.dart';
 import '../models/message.dart';

@@ -1,17 +1,25 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/models/missing_person.dart                              ║
-// ║                                                              ║
-// ║  PERAN : Blueprint data satu kasus orang hilang.            ║
-// ║          Data disimpan di SQLite lokal (tidak ada cloud).   ║
-// ║                                                              ║
-// ║  KONVERSI :                                                  ║
-// ║    toMap()   → Map untuk SQLite INSERT/UPDATE               ║
-// ║    fromMap() → MissingPerson dari SQLite row                ║
-// ║                                                              ║
-// ║  CATATAN photoUrl :                                          ║
-// ║    Bukan URL cloud — melainkan path file lokal di HP        ║
-// ║    Contoh: /data/user/0/.../cases/TF-0001/photo.jpg         ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/models/missing_person.dart                                        ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  File ini adalah "Model Blueprint" yang merepresentasikan entitas (data)     ║
+// ║  satu kasus orang hilang. Kelas ini menjadi jembatan transformasi data       ║
+// ║  dari UI (aplikasi) menuju ke Database SQLite, dan sebaliknya.               ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Terhubung ke `local_repository.dart` untuk operasi CRUD database.         ║
+// ║  - Terhubung ke `cases_page.dart` untuk merender tampilan daftar kasus.      ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `toMap()` : Mengubah objek Dart menjadi format Map/JSON untuk disuntikkan ║
+// ║                langsung ke baris tabel SQLite.                               ║
+// ║  - `fromMap()` : Mengubah baris hasil query SQLite menjadi objek Dart yang   ║
+// ║                  bisa dibaca dan ditampilkan oleh Flutter.                   ║
+// ║                                                                              ║
+// ║  CATATAN TEKNOLOGI (NYAWA ANDROID):                                          ║
+// ║  Variabel `photoUrl` di sini TIDAK berisi URL web, melainkan merepresentasikan║
+// ║  path (jalur direktori absolut) menuju penyimpanan internal perangkat Android.║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 enum CaseStatus {
   belumDitemukan,

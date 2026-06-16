@@ -1,18 +1,22 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/data/database_helper.dart                               ║
-// ║                                                              ║
-// ║  PERAN : Singleton SQLite manager.                          ║
-// ║          Membuat, membuka, dan mengelola database lokal.    ║
-// ║                                                              ║
-// ║  DATABASE : traceface.db                                     ║
-// ║  TABEL :                                                     ║
-// ║    missing_cases → data kasus orang hilang                  ║
-// ║    users         → akun petugas                             ║
-// ║                                                              ║
-// ║  DIPAKAI OLEH :                                              ║
-// ║    lib/data/local_repository.dart                           ║
-// ║    lib/services/auth_service.dart                           ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/data/database_helper.dart                                         ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Merupakan nyawa utama penyimpanan internal aplikasi. Bertindak sebagai      ║
+// ║  "Singleton SQLite Manager" yang bertanggung jawab membuat (CREATE),         ║
+// ║  membuka, dan mengatur versi skema dari database lokal `traceface.db`.       ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Hanya dipanggil oleh `local_repository.dart` sebagai layer abstraksi      ║
+// ║    sebelum mengeksekusi query.                                               ║
+// ║  - Diinisialisasi pertama kali di `main.dart` agar database siap dipakai.    ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `_version` : Naikkan angka ini jika ada perubahan struktur tabel baru.    ║
+// ║  - `_onCreate`: Skrip DDL untuk instalasi fresh (Tabel: missing_cases,       ║
+// ║                 users, dan messages).                                        ║
+// ║  - `_onUpgrade`: Skrip DDL untuk pengguna lama saat update aplikasi.         ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';

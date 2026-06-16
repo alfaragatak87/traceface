@@ -1,16 +1,20 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/pages/report_page.dart                                  ║
-// ║                                                              ║
-// ║  PERAN : Form laporan + upload foto ke Firebase Storage.    ║
-// ║                                                              ║
-// ║  ALUR LENGKAP :                                              ║
-// ║    1. User isi form                                          ║
-// ║    2. Pilih foto (kamera atau galeri) via image_picker       ║
-// ║    3. Tap "Simpan" → validasi form                           ║
-// ║    4. LocalRepository simpan semua data + salin foto ke lokal  ║
-// ║    5. NotificationService kirim notifikasi lokal             ║
-// ║    6. Dialog sukses + pindah ke tab Data Kasus               ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/report_page.dart                                            ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layar formulir bagi masyarakat atau admin untuk mendata dan melaporkan      ║
+// ║  kasus orang hilang baru. Meminta informasi seperti nama, jenis kelamin,     ║
+// ║  terakhir terlihat, dan yang paling penting: lampiran foto wajah.            ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Menggunakan `LocalRepository` -> `addCase()` untuk menyimpan entri ke DB. ║
+// ║  - Memanggil `NotificationService` agar HP membunyikan notifikasi darurat.   ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `_pickImage()` : Pemanggil native Android API untuk memantik galeri/foto. ║
+// ║  - `_submit()` : Validasi manual form dan mem-bundle objek `MissingPerson`   ║
+// ║    agar siap ditelan oleh SQLite, disusul pemindahan otomatis ke Tab Kasus.  ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:flutter/material.dart';

@@ -1,10 +1,21 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/widgets/app_widgets.dart                                ║
-// ║                                                              ║
-// ║  PERAN : Kumpulan semua widget reusable dalam satu file.    ║
-// ║          Widget di sini TIDAK punya logika bisnis —         ║
-// ║          murni tampilan (UI only).                           ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/widgets/app_widgets.dart                                          ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Pabrik Komponen (*Widget Factory*). Berisi kumpulan elemen antarmuka yang   ║
+// ║  bisa dipakai berulang-ulang (*reusable*) di berbagai halaman. Semua widget  ║
+// ║  di sini murni berfokus pada **tampilan UI** dan sama sekali **tidak boleh** ║
+// ║  mengandung logika database maupun koneksi service.                          ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Sangat bergantung pada `app_theme.dart` untuk pewarnaan.                  ║
+// ║  - Diimpor secara luas oleh halaman-halaman utama (`pages/`).                ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `AppCard` : Wadah putih melengkung berskala modern dengan bayangan.       ║
+// ║  - `PrimaryButton` : Tombol aksi utama dengan efek gradien dan klik reaktif. ║
+// ║  - `PersonAvatar` : Gambar profil melingkar dengan inisial dinamis.          ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';

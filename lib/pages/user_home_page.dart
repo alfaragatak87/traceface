@@ -1,3 +1,24 @@
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/user_home_page.dart                                         ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Halaman Dasbor/Beranda khusus untuk **Pengguna Publik**. Menampilkan UI     ║
+// ║  yang ramah dan sederhana agar masyarakat awam dapat dengan mudah melakukan  ║
+// ║  laporan penemuan (scan) maupun menambahkan data orang hilang baru.          ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Di-render oleh `UserMainScreen` di `main.dart` pada index tab ke-0.       ║
+// ║  - Mengambil data dari `LocalRepository.instance.getRecentCases()`.          ║
+// ║  - Memiliki tombol khusus ke `login_page.dart` (tersembunyi di header)       ║
+// ║    bagi petugas polisi yang ingin masuk ke dasbor admin.                     ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `AutomaticKeepAliveClientMixin` : Memastikan tab beranda ini tidak re-    ║
+// ║    render ulang dari awal saat pengguna berpindah tab (menghemat memori).    ║
+// ║  - `FutureBuilder` : Bertugas menunggu data dari SQLite selesai ditarik      ║
+// ║    sebelum menggambar *List* daftar orang hilang terbaru di bagian bawah.    ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import '../data/local_repository.dart';
@@ -160,14 +181,14 @@ class _UserHomePageState extends State<UserHomePage> with AutomaticKeepAliveClie
                   }
                   final cases = snap.data ?? [];
                   if (cases.isEmpty) {
-                    return AppCard(
+                    return const AppCard(
                       child: Padding(
-                        padding: const EdgeInsets.all(24),
+                        padding: EdgeInsets.all(24),
                         child: Column(
                           children: [
-                            const Icon(Icons.check_circle_outline_rounded, size: 48, color: AppColors.success),
-                            const SizedBox(height: 12),
-                            const Text('Belum ada laporan kasus saat ini.', style: TextStyle(color: AppColors.textSecondary)),
+                            Icon(Icons.check_circle_outline_rounded, size: 48, color: AppColors.success),
+                            SizedBox(height: 12),
+                            Text('Belum ada laporan kasus saat ini.', style: TextStyle(color: AppColors.textSecondary)),
                           ],
                         ),
                       ),

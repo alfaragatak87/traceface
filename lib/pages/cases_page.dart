@@ -1,9 +1,19 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/pages/cases_page.dart                                   ║
-// ║                                                              ║
-// ║  PERAN : Daftar semua kasus orang hilang.                   ║
-// ║          Data dari SQLite (LocalRepository).                ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/cases_page.dart                                             ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Etalase atau galeri seluruh daftar kasus orang hilang yang sudah didata     ║
+// ║  oleh masyarakat. Tampilannya menyesuaikan otoritas (Role): jika Publik,     ║
+// ║  hanya bersifat lihat data (*read-only*), namun jika Admin, akan muncul      ║
+// ║  tombol Ubah Status dan Hapus Kasus (ikon tempat sampah).                    ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Terhubung ke tabel `missing_cases` di SQLite melalui repo lokal.          ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - Konstruktor `isAdmin` : Nilai *boolean* penentu kewenangan tombol hapus.  ║
+// ║  - `_repo.deleteCase()` : Fungsi fatal untuk melenyapkan baris kasus di DB.  ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:flutter/material.dart';

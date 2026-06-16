@@ -1,12 +1,21 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/services/storage_service.dart                           ║
-// ║                                                              ║
-// ║  PERAN : Menyimpan foto ke internal storage HP.              ║
-// ║          Menggantikan Firebase Storage.                      ║
-// ║                                                              ║
-// ║  PATH LOKAL :                                                ║
-// ║    /data/user/0/.../cases/{caseId}/photo.jpg                 ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/services/storage_service.dart                                     ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layanan manajemen file dan memori (I/O). Bertugas mengurus file foto yang   ║
+// ║  ditangkap oleh kamera pengguna, lalu "menggandakan" dan "memindahkannya"    ║
+// ║  ke direktori tersembunyi (*cache/application documents directory*) milik    ║
+// ║  aplikasi TraceFace di memori internal agar tidak bisa terhapus acak.        ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Menggunakan package `path_provider` untuk mengetahui lokasi absolut OS.   ║
+// ║  - Dipanggil oleh `local_repository.dart` saat menambah kasus baru.          ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `getApplicationDocumentsDirectory()` : Ini adalah pemanggil *Native API*  ║
+// ║    Android `Context.getFilesDir()`.                                          ║
+// ║  - `imageFile.copy()` : Menyalin file *temporary* menjadi file permanen.     ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';

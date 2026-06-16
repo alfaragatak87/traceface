@@ -1,9 +1,19 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/services/notification_service.dart                      ║
-// ║                                                              ║
-// ║  PERAN : Mengelola notifikasi lokal.                        ║
-// ║          Firebase Cloud Messaging (FCM) sudah dihapus.      ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/services/notification_service.dart                                ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Modul pemicu notifikasi *Push/Tray* sistem Android lokal. Jika Firebase     ║
+// ║  Cloud Messaging (FCM) menggunakan sinyal internet, modul ini memanggil      ║
+// ║  NotificationManager API murni dari sisi sistem operasi Android itu sendiri. ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Diinisialisasi di awal pembukaan aplikasi (`main.dart`).                  ║
+// ║  - Dipanggil saat penambahan kasus baru atau peringatan spesifik lainnya.    ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `showLocalNotification()` : Merender blok kotak notifikasi *heads-up*     ║
+// ║    berisi judul dan isi pesan ke HP pengguna.                                ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart' show Color;

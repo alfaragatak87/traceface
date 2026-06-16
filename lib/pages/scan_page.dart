@@ -1,19 +1,21 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  lib/pages/scan_page.dart                                    ║
-// ║                                                              ║
-// ║  PERAN : Pindai wajah — pilih foto dari kamera/galeri,     ║
-// ║          cocokkan dengan data Firestore, kirim notifikasi   ║
-// ║          lokal jika ada yang cocok.                         ║
-// ║                                                              ║
-// ║  CARA KERJA SCAN :                                           ║
-// ║    Mode 1 — Nama: ketik nama → cari di SQLite               ║
-// ║    Mode 2 — Foto: ambil foto → cari berdasarkan nama        ║
-// ║             (di dunia nyata diganti ML face recognition)    ║
-// ║                                                              ║
-// ║  NOTIFIKASI :                                                ║
-// ║    Jika ditemukan cocok → NotificationService.showFoundNotif ║
-// ║    → Muncul di tray notifikasi HP                           ║
-// ╚══════════════════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  FILE: lib/pages/scan_page.dart                                              ║
+// ║                                                                              ║
+// ║  DESKRIPSI:                                                                  ║
+// ║  Layar simulasi pemindaian biometrik wajah. Dalam versi offline ini, sistem  ║
+// ║  menyimulasikan pendeteksian wajah cerdas menggunakan algoritma probabilitas ║
+// ║  acak (60% cocok, 40% gagal). Jika cocok, pengguna dapat mengirimkan pesan   ║
+// ║  berisi detail temuan ke dasbor Admin.                                       ║
+// ║                                                                              ║
+// ║  KONEKSI & RELASI:                                                           ║
+// ║  - Di-render oleh `UserMainScreen` dan `AdminMainScreen` pada tab "Pindai".  ║
+// ║  - Menggunakan `ImagePicker` untuk membuka modul kamera perangkat bawaan.    ║
+// ║  - Mengirim `Message` ke SQLite via `LocalRepository`.                       ║
+// ║                                                                              ║
+// ║  BARIS KODE PENTING:                                                         ║
+// ║  - `final bool isMatch = random.nextDouble() > 0.4;` : Logika persentase.    ║
+// ║  - `_contactDialog()` : Form pop-up bagi pengguna untuk mengetik laporan.    ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:flutter/material.dart';
