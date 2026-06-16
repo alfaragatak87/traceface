@@ -54,18 +54,18 @@ Proyek ini menggunakan pola desain **Model-View-Controller/Service (MVC/S)** yan
 
 ```mermaid
 graph TD
-    A[Pengguna Publik] -->|Buka Aplikasi| B(Splash Screen)
-    B -->|Belum Login| C[User Home Page]
-    C --> D(Pindai Wajah / Lapor)
-    D --> E{Wajah Cocok?}
-    E -->|Ya| F[Kirim Pesan ke Petugas]
-    E -->|Tidak| G[Data Tidak Ditemukan]
+    A["Pengguna Publik"] -->|Buka Aplikasi| B("Splash Screen")
+    B -->|Belum Login| C["User Home Page"]
+    C --> D("Pindai Wajah / Lapor")
+    D --> E{"Wajah Cocok?"}
+    E -->|Ya| F["Kirim Pesan ke Petugas"]
+    E -->|Tidak| G["Data Tidak Ditemukan"]
 
-    A2[Petugas/Admin] -->|Login| B
-    B -->|Sudah Login| H[Admin Home Page]
-    F --> I[("SQLite Database: messages")]
+    A2["Petugas/Admin"] -->|Login| B
+    B -->|Sudah Login| H["Admin Home Page"]
+    F --> I[("SQLite Database")]
     I --> H
-    H --> J(Manajemen Kasus & Baca Pesan)
+    H --> J("Manajemen Kasus & Baca Pesan")
 ```
 
 ---
@@ -78,7 +78,7 @@ Berikut adalah interaksi fungsionalitas antar pengguna.
 sequenceDiagram
     participant Publik
     participant TraceFace
-    participant SQLite as SQLite (Lokal)
+    participant SQLite
     participant Admin
     
     Publik->>TraceFace: Lapor Orang Hilang
@@ -93,7 +93,7 @@ sequenceDiagram
     TraceFace->>SQLite: Insert Tabel messages
     
     Admin->>TraceFace: Buka Tab Pesan
-    TraceFace->>SQLite: Fetch messages (ORDER BY date)
+    TraceFace->>SQLite: Fetch messages
     SQLite-->>Admin: Tampilkan Laporan Publik
 ```
 
