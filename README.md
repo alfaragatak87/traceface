@@ -205,4 +205,4 @@ Saat aplikasi sudah berjalan, Anda dapat melakukan *Login* dengan:
   * **Sandi**: `admin123`
 
 ---
-*Didesain dan diprogram khusus oleh Asisten AI Antigravity untuk menghadirkan teknologi keselamatan masyarakat secara modern dan inklusif.*
+
