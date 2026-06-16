@@ -1,8 +1,8 @@
 # 🕵️‍♂️ TraceFace: Sistem Deteksi & Pelaporan Orang Hilang Berbasis Biometrik Wajah
 
-TraceFace adalah sebuah aplikasi mobile mutakhir yang dirancang khusus untuk memfasilitasi publik dan pihak berwenang (kepolisian/admin) dalam mendata, mencari, dan memindai wajah orang yang dilaporkan hilang. 
+TraceFace adalah sebuah aplikasi mobile yang dirancang khusus untuk memfasilitasi publik dan  admin dalam mendata, mencari, dan memindai wajah orang yang dilaporkan hilang. 
 
-Proyek ini dibangun dari nol dengan mengedepankan fungsionalitas **100% Offline (Local First)** guna memastikan kecepatan akses data dan ketersediaan sistem bahkan di wilayah minim sinyal internet.
+Proyek ini dibangun dari nol dengan mengedepankan fungsionalitas **100% Offline (Local First)** guna memastikan akses data dan ketersediaan sistem.
 
 ![TraceFace App](https://img.shields.io/badge/Status-Completed-success) ![Flutter](https://img.shields.io/badge/Framework-Flutter-02569B?logo=flutter) ![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite)
 
