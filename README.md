@@ -54,18 +54,33 @@ Proyek ini menggunakan pola desain **Model-View-Controller/Service (MVC/S)** yan
 
 ```mermaid
 graph TD
-    A["Pengguna Publik"] -->|Buka Aplikasi| B("Splash Screen")
-    B -->|Belum Login| C["User Home Page"]
-    C --> D("Pindai Wajah / Lapor")
-    D --> E{"Wajah Cocok?"}
-    E -->|Ya| F["Kirim Pesan ke Petugas"]
-    E -->|Tidak| G["Data Tidak Ditemukan"]
+    Start(("Buka Aplikasi")) --> B("Halaman Pembuka (Splash)")
+    
+    %% Alur Pengecekan Sesi
+    B -->|Sesi Kosong| C["Beranda Publik"]
+    B -->|Sudah Login| H["Beranda Petugas (Admin)"]
 
-    A2["Petugas/Admin"] -->|Login| B
-    B -->|Sudah Login| H["Admin Home Page"]
-    F --> I[("SQLite Database")]
-    I --> H
-    H --> J("Manajemen Kasus & Baca Pesan")
+    %% Alur Publik
+    C --> D("Pindai Wajah")
+    C --> D2("Lapor Kasus Baru")
+    
+    D --> E{"Mirip di Database?"}
+    E -->|Ya| F["Kirim Pesan Temuan"]
+    E -->|Tidak| G["Tidak Ditemukan"]
+    
+    D2 --> I[("SQLite Database")]
+    F --> I
+
+    %% Alur Admin (Login manual)
+    C -.->|Klik Tombol Rahasia| A2("Halaman Masuk (Login)")
+    A2 -->|Autentikasi Sukses| H
+    
+    %% Alur Fitur Admin
+    H --> J("Manajemen Kasus")
+    H --> K("Kotak Masuk Pesan")
+    
+    J <-->|Baca/Tulis| I
+    K <-->|Baca| I
 ```
 
 ---
