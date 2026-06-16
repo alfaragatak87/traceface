@@ -20,6 +20,7 @@ import 'pages/home_page.dart';
 import 'pages/scan_page.dart';
 import 'pages/report_page.dart';
 import 'pages/cases_page.dart';
+import 'pages/splash_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,21 +55,21 @@ class TraceFaceApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       
-      // Karena tidak ada login, langsung masuk ke MainScreen
-      home: const MainScreen(),
+      // Berpindah ke SplashPage untuk cek sesi
+      home: const SplashPage(),
     );
   }
 }
 
-// ── MAIN SCREEN — Shell 4 Tab ──────────────────────────────────
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+// ── MAIN SCREEN ADMIN — Shell 4 Tab ──────────────────────────────────
+class AdminMainScreen extends StatefulWidget {
+  const AdminMainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<AdminMainScreen> createState() => _AdminMainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _AdminMainScreenState extends State<AdminMainScreen> {
   int _currentIndex = 0;
 
   // GlobalKey untuk akses refresh() di CasesPage dari luar

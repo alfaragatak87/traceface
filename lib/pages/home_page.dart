@@ -10,6 +10,8 @@ import '../data/local_repository.dart';
 import '../models/missing_person.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_widgets.dart';
+import '../services/local_auth_service.dart';
+import 'splash_page.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback onGoToScan;
@@ -112,7 +114,27 @@ class _HomePageState extends State<HomePage>
                                 ],
                               ),
                               const Spacer(),
-                              _OnlineBadge(),
+                              // Tombol Logout Petugas
+                              TextButton.icon(
+                                onPressed: () async {
+                                  await LocalAuthService.instance.logout();
+                                  if (!mounted) return;
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const SplashPage()),
+                                    (route) => false,
+                                  );
+                                },
+                                icon: const Icon(Icons.logout_rounded, size: 16, color: Colors.white),
+                                label: const Text('Keluar', style: TextStyle(color: Colors.white, fontSize: 12)),
+                                style: TextButton.styleFrom(
+                                  backgroundColor: AppColors.danger.withValues(alpha: 0.8),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  minimumSize: Size.zero,
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 20),

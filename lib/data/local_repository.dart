@@ -21,6 +21,10 @@
 
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
+
+import '../models/missing_person.dart';
 
 import '../models/missing_person.dart';
 import '../services/storage_service.dart';
@@ -203,6 +207,51 @@ class LocalRepository {
     );
     // Hapus foto dari internal storage
     await _storage.deletePhotoLocally(caseId);
+  }
+
+  // ══════════════════════════════════════════════════════════
+  //  AKUN PETUGAS (ADMIN)
+  // ══════════════════════════════════════════════════════════
+
+  /// Membuat akun admin bawaan jika tabel users masih kosong
+  Future<void> checkAndCreateDefaultAdmin() async {
+    final db = await DatabaseHelper.instance.database;
+    final countResult = await db.rawQuery('SELECT COUNT(*) as cnt FROM users');
+    final count = Sqflite.firstIntValue(countResult) ?? 0;
+    
+    if (count == 0) {
+      // Buat password dengan hash SHA-256 sederhana
+      final passBytes = utf8.encode('admin123');
+      final passHash  = sha256.convert(passBytes).toString();
+
+      await db.insert('users', {
+        'name': 'Administrator',
+        'email': 'admin@traceface.com',
+        'password': passHash,
+        'role': 'admin',
+        'created_at': DateTime.now().millisecondsSinceEpoch,
+      });
+      print("✅ Akun default dibuat: admin@traceface.com / admin123");
+    }
+  }
+
+  /// Login petugas
+  Future<Map<String, dynamic>?> loginAdmin(String email, String password) async {
+    final db = await DatabaseHelper.instance.database;
+    final passBytes = utf8.encode(password);
+    final passHash  = sha256.convert(passBytes).toString();
+
+    final result = await db.query(
+      'users',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, passHash],
+      limit: 1,
+    );
+
+    if (result.isNotEmpty) {
+      return result.first;
+    }
+    return null; // Email/Password salah
   }
 }
 

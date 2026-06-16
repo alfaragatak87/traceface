@@ -13,7 +13,8 @@ import '../theme/app_theme.dart';
 import '../widgets/app_widgets.dart';
 
 class CasesPage extends StatefulWidget {
-  const CasesPage({super.key});
+  final bool isAdmin;
+  const CasesPage({super.key, this.isAdmin = true});
 
   @override
   State<CasesPage> createState() => CasesPageState();
@@ -95,6 +96,7 @@ class CasesPageState extends State<CasesPage>
                 return _CaseCard(
                   person: cases[index],
                   index:  index,
+                  isAdmin: widget.isAdmin,
                   onStatusChanged: refresh,
                   onDeleted:       refresh,
                 );
@@ -194,12 +196,14 @@ class _FilterBtn extends StatelessWidget {
 class _CaseCard extends StatelessWidget {
   final MissingPerson person;
   final int           index;
+  final bool          isAdmin;
   final VoidCallback  onStatusChanged;
   final VoidCallback  onDeleted;
 
   const _CaseCard({
     required this.person,
     required this.index,
+    required this.isAdmin,
     required this.onStatusChanged,
     required this.onDeleted,
   });
@@ -286,32 +290,34 @@ class _CaseCard extends StatelessWidget {
 
           const Divider(height: 1),
 
-          // Footer: Aksi (Update Status / Hapus)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton.icon(
-                  onPressed: () => _confirmDelete(context),
-                  icon: const Icon(Icons.delete_outline, size: 18),
-                  label: const Text('Hapus'),
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.danger,
+          // Footer: Aksi (Update Status / Hapus) - Hanya untuk Admin
+          if (isAdmin) ...[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton.icon(
+                    onPressed: () => _confirmDelete(context),
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    label: const Text('Hapus'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppColors.danger,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                TextButton.icon(
-                  onPressed: () => _showUpdateStatusSheet(context),
-                  icon: const Icon(Icons.edit_outlined, size: 18),
-                  label: const Text('Ubah Status'),
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.primary,
+                  const Spacer(),
+                  TextButton.icon(
+                    onPressed: () => _showUpdateStatusSheet(context),
+                    icon: const Icon(Icons.edit_outlined, size: 18),
+                    label: const Text('Ubah Status'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppColors.primary,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );
