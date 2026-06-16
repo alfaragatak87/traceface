@@ -106,28 +106,33 @@ traceface/
 ├── android/                   # Kode native Java/Kotlin Android
 ├── lib/
 │   ├── data/
-│   │   ├── database_helper.dart      # Skema Database (CREATE TABLE)
-│   │   └── local_repository.dart     # Logika CRUD ke SQLite
+│   │   ├── pembantu_database.dart      # Skema Database (CREATE TABLE)
+│   │   └── repositori_lokal.dart     # Logika CRUD ke SQLite
 │   ├── models/
-│   │   ├── missing_person.dart       # Blueprint data orang hilang
-│   │   └── message.dart              # Blueprint data pesan/laporan
+│   │   ├── orang_hilang.dart       # Blueprint data orang hilang
+│   │   └── pesan.dart              # Blueprint data pesan/laporan
 │   ├── pages/
-│   │   ├── splash_page.dart          # Cek sesi saat aplikasi dibuka
-│   │   ├── user_home_page.dart       # Beranda utama untuk publik
-│   │   ├── home_page.dart            # Beranda utama untuk Admin
-│   │   ├── login_page.dart           # Layar masuk Admin
-│   │   ├── scan_page.dart            # Sensor Kamera & Pencocokan Wajah
-│   │   ├── report_page.dart          # Form lapor orang hilang baru
-│   │   ├── cases_page.dart           # Daftar orang hilang
-│   │   └── admin_messages_page.dart  # Kotak masuk pesan Admin
+│   │   ├── halaman_pembuka.dart          # [Pintu Masuk] Cek sesi awal
+│   │   │
+│   │   ├── Area Publik (Masyarakat):
+│   │   │   ├── beranda_publik.dart       # Beranda utama untuk publik
+│   │   │   ├── halaman_pindai.dart       # Sensor Kamera & Pencocokan Wajah
+│   │   │   ├── halaman_lapor.dart        # Form lapor orang hilang baru
+│   │   │   └── user_main_screen.dart     # Pembungkus navigasi publik
+│   │   │
+│   │   └── Area Petugas (Admin):
+│   │       ├── halaman_masuk.dart        # Layar masuk rahasia Admin
+│   │       ├── beranda_petugas.dart      # Dasbor kendali utama Admin
+│   │       ├── halaman_kasus.dart        # Manajemen data orang hilang
+│   │       └── halaman_pesan.dart        # Kotak masuk laporan publik
 │   ├── services/
-│   │   ├── local_auth_service.dart   # Manajemen Login/Logout
-│   │   ├── notification_service.dart # Notifikasi Tray HP
-│   │   └── storage_service.dart      # Penyimpanan Foto ke folder internal
+│   │   ├── layanan_autentikasi.dart   # Manajemen Login/Logout
+│   │   ├── layanan_notifikasi.dart # Notifikasi Tray HP
+│   │   └── layanan_penyimpanan.dart      # Penyimpanan Foto ke folder internal
 │   ├── theme/
-│   │   └── app_theme.dart            # Warna, Font, dan Styling global
+│   │   └── tema_aplikasi.dart            # Warna, Font, dan Styling global
 │   ├── widgets/
-│   │   └── app_widgets.dart          # Komponen UI rakitan (Tombol, Card)
+│   │   └── komponen_aplikasi.dart          # Komponen UI rakitan (Tombol, Card)
 │   └── main.dart                     # Entry point & Shell navigasi bawah
 ├── test/
 ├── pubspec.yaml               # Daftar dependency (sqflite, image_picker)
