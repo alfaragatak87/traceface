@@ -63,7 +63,7 @@ graph TD
 
     A2[Petugas/Admin] -->|Login| B
     B -->|Sudah Login| H[Admin Home Page]
-    F --> I[(SQLite Database: messages)]
+    F --> I[("SQLite Database: messages")]
     I --> H
     H --> J(Manajemen Kasus & Baca Pesan)
 ```
@@ -78,7 +78,7 @@ Berikut adalah interaksi fungsionalitas antar pengguna.
 sequenceDiagram
     participant Publik
     participant TraceFace
-    participant SQLite (Lokal)
+    participant SQLite as SQLite (Lokal)
     participant Admin
     
     Publik->>TraceFace: Lapor Orang Hilang
@@ -89,11 +89,11 @@ sequenceDiagram
     TraceFace->>SQLite: Cari Kemiripan
     SQLite-->>TraceFace: Kembalikan 3 Kandidat Cocok
     
-    Publik->>TraceFace: Klik "Hubungi Petugas"
-    TraceFace->>SQLite: Insert Tabel `messages`
+    Publik->>TraceFace: Klik Hubungi Petugas
+    TraceFace->>SQLite: Insert Tabel messages
     
-    Admin->>TraceFace: Buka Tab "Pesan"
-    TraceFace->>SQLite: Fetch `messages` (ORDER BY date)
+    Admin->>TraceFace: Buka Tab Pesan
+    TraceFace->>SQLite: Fetch messages (ORDER BY date)
     SQLite-->>Admin: Tampilkan Laporan Publik
 ```
 
