@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/splash_page.dart                                            ║
+// ║  FILE: lib/pages/halaman_pembuka.dart                                            ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layar sambutan animasi yang muncul pertama kali saat aplikasi dibuka.       ║
@@ -19,9 +19,9 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
-import '../data/local_repository.dart';
-import '../services/local_auth_service.dart';
-import '../theme/app_theme.dart';
+import '../data/repositori_lokal.dart';
+import '../services/layanan_autentikasi.dart';
+import '../theme/tema_aplikasi.dart';
 import 'user_main_screen.dart';
 import '../main.dart'; // To import AdminMainScreen
 

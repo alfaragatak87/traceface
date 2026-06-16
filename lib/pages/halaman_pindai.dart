@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/scan_page.dart                                              ║
+// ║  FILE: lib/pages/halaman_pindai.dart                                              ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layar simulasi pemindaian biometrik wajah. Dalam versi offline ini, sistem  ║
@@ -20,12 +20,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../data/local_repository.dart';
-import '../models/missing_person.dart';
-import '../models/message.dart';
-import '../services/notification_service.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
+import '../data/repositori_lokal.dart';
+import '../models/orang_hilang.dart';
+import '../models/pesan.dart';
+import '../services/layanan_notifikasi.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});

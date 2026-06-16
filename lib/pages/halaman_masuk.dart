@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/login_page.dart                                             ║
+// ║  FILE: lib/pages/halaman_masuk.dart                                             ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layar formulir autentikasi masuk (Login) khusus bagi Petugas Polisi atau    ║
@@ -7,7 +7,7 @@
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Dipanggil dari `UserHomePage` jika Publik mengetuk tombol "Petugas".      ║
-// ║  - Menghubungi `local_repository.dart` -> `loginAdmin()` untuk validasi.     ║
+// ║  - Menghubungi `repositori_lokal.dart` -> `loginAdmin()` untuk validasi.     ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `_repo.loginAdmin(email, pass)` : Menyuntikkan kredensial ke repo SQLite  ║
@@ -17,10 +17,10 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
-import '../data/local_repository.dart';
-import '../services/local_auth_service.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
+import '../data/repositori_lokal.dart';
+import '../services/layanan_autentikasi.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
 import '../main.dart';
 
 class LoginPage extends StatefulWidget {

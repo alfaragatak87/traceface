@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/report_page.dart                                            ║
+// ║  FILE: lib/pages/halaman_lapor.dart                                            ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layar formulir bagi masyarakat atau admin untuk mendata dan melaporkan      ║
@@ -19,9 +19,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../data/local_repository.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
+import '../data/repositori_lokal.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
 
 class ReportPage extends StatefulWidget {
   final VoidCallback? onReportSaved;

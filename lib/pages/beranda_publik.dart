@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/user_home_page.dart                                         ║
+// ║  FILE: lib/pages/beranda_publik.dart                                         ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Halaman Dasbor/Beranda khusus untuk **Pengguna Publik**. Menampilkan UI     ║
@@ -9,7 +9,7 @@
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Di-render oleh `UserMainScreen` di `main.dart` pada index tab ke-0.       ║
 // ║  - Mengambil data dari `LocalRepository.instance.getRecentCases()`.          ║
-// ║  - Memiliki tombol khusus ke `login_page.dart` (tersembunyi di header)       ║
+// ║  - Memiliki tombol khusus ke `halaman_masuk.dart` (tersembunyi di header)       ║
 // ║    bagi petugas polisi yang ingin masuk ke dasbor admin.                     ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
@@ -21,11 +21,11 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../data/local_repository.dart';
-import '../models/missing_person.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
-import 'login_page.dart';
+import '../data/repositori_lokal.dart';
+import '../models/orang_hilang.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
+import 'halaman_masuk.dart';
 
 class UserHomePage extends StatefulWidget {
   final VoidCallback onGoToScan;

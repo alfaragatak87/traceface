@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/models/message.dart                                               ║
+// ║  FILE: lib/models/pesan.dart                                               ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  File ini mendefinisikan struktur objek "Pesan / Laporan Penemuan". Pesan    ║
@@ -7,8 +7,8 @@
 // ║  di layar pemindaian (Scan), dan diterima oleh Admin di dasbornya.           ║
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
-// ║  - Di-insert ke DB lewat `local_repository.dart` -> `sendMessage()`.         ║
-// ║  - Di-fetch oleh `admin_messages_page.dart` untuk dirender menjadi list UI.  ║
+// ║  - Di-insert ke DB lewat `repositori_lokal.dart` -> `sendMessage()`.         ║
+// ║  - Di-fetch oleh `halaman_pesan.dart` untuk dirender menjadi list UI.  ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `isRead` : Bendera (flag) logika untuk membedakan pesan baru/lama.        ║

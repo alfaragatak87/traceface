@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/home_page.dart                                              ║
+// ║  FILE: lib/pages/beranda_petugas.dart                                              ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Halaman Dasbor Utama khusus untuk **Petugas / Admin**. Menampilkan panel    ║
@@ -8,23 +8,23 @@
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Di-render oleh `AdminMainScreen` di `main.dart` pada index tab ke-0.      ║
-// ║  - Memanggil `local_auth_service.dart` untuk operasi Log Out (keluar).       ║
+// ║  - Memanggil `layanan_autentikasi.dart` untuk operasi Log Out (keluar).       ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `_repo.getStats()` : Menjalankan kueri kalkulasi total (SUM/COUNT)        ║
 // ║    kasus dari database untuk ditampilkan pada kartu statistik biru.          ║
 // ║  - Fungsi _logout() : Mengubah flag `is_logged_in` menjadi false, lalu       ║
-// ║    melempar user kembali ke `splash_page.dart` (mengunci aplikasi).          ║
+// ║    melempar user kembali ke `halaman_pembuka.dart` (mengunci aplikasi).          ║
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../data/local_repository.dart';
-import '../models/missing_person.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
-import '../services/local_auth_service.dart';
-import 'splash_page.dart';
+import '../data/repositori_lokal.dart';
+import '../models/orang_hilang.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
+import '../services/layanan_autentikasi.dart';
+import 'halaman_pembuka.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback onGoToScan;

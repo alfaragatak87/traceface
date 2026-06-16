@@ -9,7 +9,7 @@
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Merupakan induk (*root*) dari seluruh halaman (`pages/`).                 ║
-// ║  - Diakhiri dengan melontarkan pengguna ke `splash_page.dart` untuk          ║
+// ║  - Diakhiri dengan melontarkan pengguna ke `halaman_pembuka.dart` untuk          ║
 // ║    dilakukan verifikasi sesi login sebelum membelah *router* aplikasi.       ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
@@ -22,15 +22,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'theme/app_theme.dart';
-import 'data/database_helper.dart';
-import 'services/notification_service.dart';
-import 'pages/home_page.dart';
-import 'pages/scan_page.dart';
-import 'pages/report_page.dart';
-import 'pages/cases_page.dart';
-import 'pages/splash_page.dart';
-import 'pages/admin_messages_page.dart';
+import 'theme/tema_aplikasi.dart';
+import 'data/pembantu_database.dart';
+import 'services/layanan_notifikasi.dart';
+import 'pages/beranda_petugas.dart';
+import 'pages/halaman_pindai.dart';
+import 'pages/halaman_lapor.dart';
+import 'pages/halaman_kasus.dart';
+import 'pages/halaman_pembuka.dart';
+import 'pages/halaman_pesan.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

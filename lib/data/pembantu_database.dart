@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/data/database_helper.dart                                         ║
+// ║  FILE: lib/data/pembantu_database.dart                                         ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Merupakan nyawa utama penyimpanan internal aplikasi. Bertindak sebagai      ║
@@ -7,7 +7,7 @@
 // ║  membuka, dan mengatur versi skema dari database lokal `traceface.db`.       ║
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
-// ║  - Hanya dipanggil oleh `local_repository.dart` sebagai layer abstraksi      ║
+// ║  - Hanya dipanggil oleh `repositori_lokal.dart` sebagai layer abstraksi      ║
 // ║    sebelum mengeksekusi query.                                               ║
 // ║  - Diinisialisasi pertama kali di `main.dart` agar database siap dipakai.    ║
 // ║                                                                              ║

@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/theme/app_theme.dart                                              ║
+// ║  FILE: lib/theme/tema_aplikasi.dart                                              ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Kamus sentral (*Single Source of Truth*) untuk seluruh konfigurasi visual   ║

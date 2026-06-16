@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/services/storage_service.dart                                     ║
+// ║  FILE: lib/services/layanan_penyimpanan.dart                                     ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layanan manajemen file dan memori (I/O). Bertugas mengurus file foto yang   ║
@@ -9,7 +9,7 @@
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Menggunakan package `path_provider` untuk mengetahui lokasi absolut OS.   ║
-// ║  - Dipanggil oleh `local_repository.dart` saat menambah kasus baru.          ║
+// ║  - Dipanggil oleh `repositori_lokal.dart` saat menambah kasus baru.          ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `getApplicationDocumentsDirectory()` : Ini adalah pemanggil *Native API*  ║

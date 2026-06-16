@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/widgets/app_widgets.dart                                          ║
+// ║  FILE: lib/widgets/komponen_aplikasi.dart                                          ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Pabrik Komponen (*Widget Factory*). Berisi kumpulan elemen antarmuka yang   ║
@@ -8,7 +8,7 @@
 // ║  mengandung logika database maupun koneksi service.                          ║
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
-// ║  - Sangat bergantung pada `app_theme.dart` untuk pewarnaan.                  ║
+// ║  - Sangat bergantung pada `tema_aplikasi.dart` untuk pewarnaan.                  ║
 // ║  - Diimpor secara luas oleh halaman-halaman utama (`pages/`).                ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
@@ -18,8 +18,8 @@
 // ╚══════════════════════════════════════════════════════════════════════════════╝
 
 import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
-import '../models/missing_person.dart';
+import '../theme/tema_aplikasi.dart';
+import '../models/orang_hilang.dart';
 
 // ══════════════════════════════════════════════════════════════
 //  AppCard — Kartu premium dengan shadow dan border halus

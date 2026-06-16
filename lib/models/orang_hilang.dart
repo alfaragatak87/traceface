@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/models/missing_person.dart                                        ║
+// ║  FILE: lib/models/orang_hilang.dart                                        ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  File ini adalah "Model Blueprint" yang merepresentasikan entitas (data)     ║
@@ -7,8 +7,8 @@
 // ║  dari UI (aplikasi) menuju ke Database SQLite, dan sebaliknya.               ║
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
-// ║  - Terhubung ke `local_repository.dart` untuk operasi CRUD database.         ║
-// ║  - Terhubung ke `cases_page.dart` untuk merender tampilan daftar kasus.      ║
+// ║  - Terhubung ke `repositori_lokal.dart` untuk operasi CRUD database.         ║
+// ║  - Terhubung ke `halaman_kasus.dart` untuk merender tampilan daftar kasus.      ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `toMap()` : Mengubah objek Dart menjadi format Map/JSON untuk disuntikkan ║

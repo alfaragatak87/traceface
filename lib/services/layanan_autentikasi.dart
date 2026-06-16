@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/services/local_auth_service.dart                                  ║
+// ║  FILE: lib/services/layanan_autentikasi.dart                                  ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Layanan (Service) yang mengurus sesi login dan status autentikasi Admin.    ║
@@ -8,7 +8,7 @@
 // ║                                                                              ║
 // ║  KONEKSI & RELASI:                                                           ║
 // ║  - Menggunakan package `shared_preferences`.                                 ║
-// ║  - Dicek secara otomatis di `splash_page.dart` saat aplikasi baru dibuka.    ║
+// ║  - Dicek secara otomatis di `halaman_pembuka.dart` saat aplikasi baru dibuka.    ║
 // ║                                                                              ║
 // ║  BARIS KODE PENTING:                                                         ║
 // ║  - `login()` : Menyimpan key 'is_logged_in' ke dalam *cache* lokal memori.   ║

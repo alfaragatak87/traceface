@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════════╗
-// ║  FILE: lib/pages/cases_page.dart                                             ║
+// ║  FILE: lib/pages/halaman_kasus.dart                                             ║
 // ║                                                                              ║
 // ║  DESKRIPSI:                                                                  ║
 // ║  Etalase atau galeri seluruh daftar kasus orang hilang yang sudah didata     ║
@@ -17,10 +17,10 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../data/local_repository.dart';
-import '../models/missing_person.dart';
-import '../theme/app_theme.dart';
-import '../widgets/app_widgets.dart';
+import '../data/repositori_lokal.dart';
+import '../models/orang_hilang.dart';
+import '../theme/tema_aplikasi.dart';
+import '../widgets/komponen_aplikasi.dart';
 
 class CasesPage extends StatefulWidget {
   final bool isAdmin;

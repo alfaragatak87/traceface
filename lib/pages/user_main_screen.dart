@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
-import 'user_home_page.dart';
-import 'scan_page.dart';
-import 'report_page.dart';
-import 'cases_page.dart';
+import '../theme/tema_aplikasi.dart';
+import 'beranda_publik.dart';
+import 'halaman_pindai.dart';
+import 'halaman_lapor.dart';
+import 'halaman_kasus.dart';
 
 class UserMainScreen extends StatefulWidget {
   const UserMainScreen({super.key});
