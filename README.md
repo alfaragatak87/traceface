@@ -91,25 +91,35 @@ Berikut adalah interaksi fungsionalitas antar pengguna.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant Publik
     participant TraceFace
-    participant SQLite
+    participant Database
     participant Admin
-    
-    Publik->>TraceFace: Lapor Orang Hilang
-    TraceFace->>SQLite: Simpan Data Kasus & Foto
-    SQLite-->>TraceFace: Sukses
-    
-    Publik->>TraceFace: Scan Wajah (Kamera)
-    TraceFace->>SQLite: Cari Kemiripan
-    SQLite-->>TraceFace: Kembalikan 3 Kandidat Cocok
-    
-    Publik->>TraceFace: Klik Hubungi Petugas
-    TraceFace->>SQLite: Insert Tabel messages
-    
-    Admin->>TraceFace: Buka Tab Pesan
-    TraceFace->>SQLite: Fetch messages
-    SQLite-->>Admin: Tampilkan Laporan Publik
+
+    Note over Publik,Database: [1] Melaporkan Orang Hilang Baru
+    Publik->>+TraceFace: Isi form lapor & foto
+    TraceFace->>+Database: Insert ke tabel 'missing_persons'
+    Database-->>-TraceFace: Simpan sukses
+    TraceFace-->>-Publik: Tampilkan notifikasi berhasil
+
+    Note over Publik,Database: [2] Pindai Wajah & Pencocokan
+    Publik->>+TraceFace: Scan wajah via kamera
+    TraceFace->>+Database: Query pencarian wajah
+    Database-->>-TraceFace: Return kandidat mirip
+    TraceFace-->>-Publik: Tampilkan hasil pindai
+
+    Note over Publik,Database: [3] Menghubungi Petugas
+    Publik->>+TraceFace: Klik 'Hubungi Petugas' di profil
+    TraceFace->>+Database: Insert ke tabel 'messages'
+    Database-->>-TraceFace: Kirim sukses
+    TraceFace-->>-Publik: Tampilkan alert terkirim
+
+    Note over TraceFace,Admin: [4] Petugas Memeriksa Laporan
+    Admin->>+TraceFace: Buka Kotak Masuk Pesan
+    TraceFace->>+Database: Fetch pesan (Urutkan dari terbaru)
+    Database-->>-TraceFace: Return list pesan
+    TraceFace-->>-Admin: Tampilkan pesan dari Publik
 ```
 
 ---
