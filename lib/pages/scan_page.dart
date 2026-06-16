@@ -136,7 +136,6 @@ class _ScanPageState extends State<ScanPage> with TickerProviderStateMixin {
         found = await _repo.searchByName(query);
       } else {
         // SIMULASI FACE RECOGNITION:
-        // Karena tidak ada model ML/AI sungguhan, kita simulasikan
         // sistem berhasil mencocokkan wajah dengan mengambil 1 kasus
         // secara acak dari database lokal.
         final allCases = await _repo.getAllCases();
