@@ -25,8 +25,7 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert';
 
 import '../models/missing_person.dart';
-
-import '../models/missing_person.dart';
+import '../models/message.dart';
 import '../services/storage_service.dart';
 import '../services/notification_service.dart';
 import 'database_helper.dart';
@@ -38,6 +37,7 @@ class LocalRepository {
 
   final _storage = StorageService.instance;
   final _notif   = NotificationService.instance;
+  final dbHelper = DatabaseHelper.instance;
 
   // ══════════════════════════════════════════════════════════
   //  READ — Query data dari SQLite
@@ -235,23 +235,49 @@ class LocalRepository {
     }
   }
 
-  /// Login petugas
+  // ── AUTENTIKASI PETUGAS ──────────────────────────────────
   Future<Map<String, dynamic>?> loginAdmin(String email, String password) async {
-    final db = await DatabaseHelper.instance.database;
-    final passBytes = utf8.encode(password);
-    final passHash  = sha256.convert(passBytes).toString();
+    final db = await dbHelper.database;
+    final bytes = utf8.encode(password);
+    final digest = sha256.convert(bytes).toString();
 
-    final result = await db.query(
+    final results = await db.query(
       'users',
       where: 'email = ? AND password = ?',
-      whereArgs: [email, passHash],
-      limit: 1,
+      whereArgs: [email, digest],
     );
 
-    if (result.isNotEmpty) {
-      return result.first;
-    }
-    return null; // Email/Password salah
+    if (results.isNotEmpty) return results.first;
+    return null;
+  }
+
+  // ── MANAJEMEN PESAN / LAPORAN ──────────────────────────────
+  
+  /// Mengirim pesan baru ke database
+  Future<void> sendMessage(Message msg) async {
+    final db = await dbHelper.database;
+    await db.insert('messages', msg.toMap());
+  }
+
+  /// Mengambil semua pesan, diurutkan dari yang terbaru
+  Future<List<Message>> getMessages() async {
+    final db = await dbHelper.database;
+    final results = await db.query(
+      'messages',
+      orderBy: 'created_at DESC',
+    );
+    return results.map((e) => Message.fromMap(e)).toList();
+  }
+
+  /// Menandai pesan telah dibaca
+  Future<void> markMessageAsRead(int id) async {
+    final db = await dbHelper.database;
+    await db.update(
+      'messages',
+      {'is_read': 1},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }
 

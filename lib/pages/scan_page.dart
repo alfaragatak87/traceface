@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../data/local_repository.dart';
 import '../models/missing_person.dart';
+import '../models/message.dart';
 import '../services/notification_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_widgets.dart';
@@ -662,8 +663,7 @@ class _FoundCard extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: () => _dialog(context, '📞 Hubungi Keluarga',
-                    'Mengirim notifikasi ke:\n${person.contact}'),
+                  onPressed: () => _contactDialog(context, person),
                   icon: const Icon(Icons.phone_outlined, size: 16),
                   label: const Text('Hubungi'),
                   style: OutlinedButton.styleFrom(
@@ -692,6 +692,82 @@ class _FoundCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  void _contactDialog(BuildContext context, MissingPerson person) {
+    final nameCtrl = TextEditingController();
+    final phoneCtrl = TextEditingController();
+    final msgCtrl = TextEditingController();
+    bool isSending = false;
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            title: const Text('Hubungi Petugas'),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Laporkan penemuan ini ke petugas polisi/admin terdekat.', style: TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: nameCtrl,
+                    decoration: const InputDecoration(labelText: 'Nama Anda', prefixIcon: Icon(Icons.person_outline)),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: phoneCtrl,
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(labelText: 'No. Telepon', prefixIcon: Icon(Icons.phone_android)),
+                  ),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: msgCtrl,
+                    maxLines: 3,
+                    decoration: const InputDecoration(labelText: 'Lokasi & Keterangan', prefixIcon: Icon(Icons.location_on_outlined)),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: isSending ? null : () => Navigator.pop(ctx),
+                child: const Text('Batal'),
+              ),
+              ElevatedButton(
+                onPressed: isSending ? null : () async {
+                  if (nameCtrl.text.isEmpty || msgCtrl.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Nama dan Keterangan wajib diisi.')));
+                    return;
+                  }
+                  setState(() => isSending = true);
+                  
+                  final msg = Message(
+                    caseId: person.caseId,
+                    userName: nameCtrl.text.trim(),
+                    contactInfo: phoneCtrl.text.trim(),
+                    textMessage: msgCtrl.text.trim(),
+                    createdAt: DateTime.now(),
+                  );
+                  await LocalRepository.instance.sendMessage(msg);
+                  
+                  if (!ctx.mounted) return;
+                  Navigator.pop(ctx);
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Pesan berhasil terkirim ke petugas.')));
+                },
+                child: isSending 
+                  ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                  : const Text('Kirim Pesan'),
+              ),
+            ],
+          );
+        }
       ),
     );
   }

@@ -21,6 +21,7 @@ import 'pages/scan_page.dart';
 import 'pages/report_page.dart';
 import 'pages/cases_page.dart';
 import 'pages/splash_page.dart';
+import 'pages/admin_messages_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,6 +98,9 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
 
     // Tab 3: Data Kasus
     CasesPage(key: _casesKey),
+
+    // Tab 4: Pesan Masuk
+    const AdminMessagesPage(),
   ];
 
   @override
@@ -132,6 +136,7 @@ class _BottomNav extends StatelessWidget {
       (icon: Icons.document_scanner_rounded, label: 'Pindai'),
       (icon: Icons.edit_note_rounded,        label: 'Laporan'),
       (icon: Icons.folder_open_rounded,      label: 'Data Kasus'),
+      (icon: Icons.mark_email_unread_rounded,label: 'Pesan'),
     ];
 
     return Container(

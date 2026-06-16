@@ -25,7 +25,7 @@ class DatabaseHelper {
   static Database? _database;
 
   // Versi database — naikkan jika ada perubahan skema
-  static const int _version = 1;
+  static const int _version = 2;
   static const String _dbName = 'traceface.db';
 
   // ── GETTER DATABASE ────────────────────────────────────────
@@ -47,7 +47,7 @@ class DatabaseHelper {
     );
   }
 
-  // ── BUAT TABEL SAAT PERTAMA KALI ──────────────────────────
+  // ── TABEL ──────────────────────────
   Future<void> _onCreate(Database db, int version) async {
     // Tabel kasus orang hilang
     await db.execute('''
@@ -92,12 +92,36 @@ class DatabaseHelper {
         created_at INTEGER NOT NULL
       )
     ''');
+
+    // Tabel pesan / laporan masuk
+    await db.execute('''
+      CREATE TABLE messages (
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
+        case_id      TEXT    NOT NULL,
+        user_name    TEXT    NOT NULL,
+        contact_info TEXT    NOT NULL,
+        text_message TEXT    NOT NULL,
+        created_at   INTEGER NOT NULL,
+        is_read      INTEGER NOT NULL DEFAULT 0
+      )
+    ''');
   }
 
   // ── UPGRADE SKEMA (jika ada perubahan di versi baru) ──────
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    // Untuk versi mendatang: tambahkan ALTER TABLE di sini
-    // Contoh: if (oldVersion < 2) { await db.execute("ALTER TABLE ..."); }
+    if (oldVersion < 2) {
+      await db.execute('''
+        CREATE TABLE messages (
+          id           INTEGER PRIMARY KEY AUTOINCREMENT,
+          case_id      TEXT    NOT NULL,
+          user_name    TEXT    NOT NULL,
+          contact_info TEXT    NOT NULL,
+          text_message TEXT    NOT NULL,
+          created_at   INTEGER NOT NULL,
+          is_read      INTEGER NOT NULL DEFAULT 0
+        )
+      ''');
+    }
   }
 
   // ── CLOSE DATABASE ─────────────────────────────────────────
